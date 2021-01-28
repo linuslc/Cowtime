@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3846316904386575219}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.5, y: 1.53, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4541165771105195689}
   m_Father: {fileID: 0}
@@ -73,12 +73,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 66d221829d5286f43a0f83471c71aa86, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ac42bc08595dbd646baa07b8fe1b05bb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5, y: 5}
+  m_Size: {x: 3, y: 3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -97,11 +97,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positions_:
-  - {x: -7.5, y: 1.5, z: 0}
+  - {x: -7.4, y: 1.5, z: 0}
   - {x: -3.75, y: 1.5, z: 0}
   - {x: 0, y: 1.5, z: 0}
   - {x: 3.75, y: 1.5, z: 0}
-  - {x: 7.5, y: 1.5, z: 0}
+  - {x: 7.4, y: 1.5, z: 0}
+  beam_active_duration_: 0
+  cow_controller_: {fileID: 0}
+  hp_: 0
+  score_: {fileID: 0}
 --- !u!1 &4141987591762693273
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,7 +131,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4141987591762693273}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.27, z: 0}
+  m_LocalPosition: {x: 0, y: -2.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3846316904386575217}
@@ -173,7 +177,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a30d9c4464eecef4a9b28c6cec2ff132, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f3505dd5e90726842adb9cecaf352f83, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
