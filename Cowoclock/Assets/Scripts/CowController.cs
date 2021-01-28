@@ -27,10 +27,15 @@ public class CowController : MonoBehaviour
 
     public int cow_points_;
 
+    private AudioSource sound_player_;
+
+    [SerializeField] private AudioClip bull_;
+    [SerializeField] private AudioClip cow_;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        sound_player_ = GetComponent<AudioSource>();
 
         for (int i = 0; i < positions_.Length; i++)
         {
@@ -110,4 +115,17 @@ public class CowController : MonoBehaviour
             cows_[i].SetActive(false);
         }
     }
+
+    public void CowCollected()
+    {
+        sound_player_.clip = cow_;
+        sound_player_.Play();
+    }
+
+    public void BullCollected()
+    {
+        sound_player_.clip = bull_;
+        sound_player_.Play();
+    }
+
 }

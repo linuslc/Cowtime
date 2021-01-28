@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 1962505695
+    locked: 0
+  - name: Cow
+    uniqueID: 4186912153
+    locked: 0
+  - name: Player
+    uniqueID: 180779815
+    locked: 0

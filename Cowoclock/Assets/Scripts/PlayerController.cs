@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+
+    [SerializeField] private GameManager game_manager_;
 
     [SerializeField] private Vector3[] positions_;
     private int player_position_index_;
@@ -19,10 +20,24 @@ public class PlayerController : MonoBehaviour
     public int hp_;
 
     [SerializeField] private Text score_;
-    
+
+    [SerializeField] private GameObject damage_indicator_;
+    [SerializeField] private float damage_duration_;
+    [SerializeField] private GameObject death_indicator_;
+
+    [SerializeField] private GameObject[] hp_ui_elements_;
+
+    [SerializeField] private AudioClip beam_sound_;
+    [SerializeField] private AudioClip damage_;
+
+    private AudioSource sound_player_;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        sound_player_ = GetComponent<AudioSource>();
+
         beam_ = transform.GetChild(0).gameObject;
         beam_.SetActive(false);
 
@@ -51,7 +66,10 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            StopAllCoroutines();
+            sound_player_.clip = beam_sound_;
+            sound_player_.Play();
+
+            StopCoroutine("ActivateBeam");
             StartCoroutine(ActivateBeam());
 
             CheckCow();
@@ -67,19 +85,42 @@ public class PlayerController : MonoBehaviour
         beam_.SetActive(false);
     }
 
+    IEnumerator TakeDamage()
+    {
+        hp_--;
+
+        hp_ui_elements_[hp_].SetActive(false);
+
+        damage_indicator_.SetActive(true);
+
+        if (hp_ <= 0)
+        {
+            game_manager_.GameOver(3.0f);
+            death_indicator_.SetActive(true);
+        }
+
+        yield return new WaitForSeconds(damage_duration_);
+
+        damage_indicator_.SetActive(false);
+    }
+
     private void CheckCow()
     {
         if (!cow_controller_.cows_[player_position_index_].activeInHierarchy) return;
 
         if (cow_controller_.cows_[player_position_index_].transform.GetChild(0).gameObject.activeInHierarchy)
         {
-            //Damage
-            hp_--;
 
-            if (hp_ <= 0) SceneManager.LoadScene("Greta Scene");
+            cow_controller_.BullCollected();
+
+            StopCoroutine("TakeDamage");
+            StartCoroutine(TakeDamage());
+            
         }
         else
         {
+            cow_controller_.CowCollected();
+
             //Points
             points_ += cow_controller_.cow_points_;
             score_.text = points_.ToString();
