@@ -631,6 +631,10 @@ MonoBehaviour:
   spawn_interval_: 2
   visible_duration_: 2
   horn_rate_: 0.5
+  hard_max_spawn_count_: 4
+  hard_spawn_interval_: 1
+  hard_visible_duration_: 1
+  hard_horn_rate_: 0.6
   cow_prefab_: {fileID: 4271069480589338799, guid: 9579c44e79eec8345a7f7eaf26af2985, type: 3}
   cows_: []
   cow_points_: 100
@@ -648,7 +652,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.232
   m_Pitch: 1
   Loop: 0
   Mute: 0

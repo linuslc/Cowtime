@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            cow_controller_.CowCollected();
+            cow_controller_.CowCollected(points_>=1000); //how many points to collect before game goes batshit
 
             //Points
             points_ += cow_controller_.cow_points_;

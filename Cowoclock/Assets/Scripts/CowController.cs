@@ -18,6 +18,16 @@ public class CowController : MonoBehaviour
     [Range(0.0f, 1.0f)]
     [SerializeField] private float horn_rate_;
 
+
+    [SerializeField] private int hard_max_spawn_count_;
+
+    [SerializeField] private float hard_spawn_interval_;
+    [SerializeField] private float hard_visible_duration_;
+
+    [Range(0.0f, 1.0f)]
+    [SerializeField] private float hard_horn_rate_;
+
+
     private float timer_;
 
     private COWSPAWNSTATE state_ = COWSPAWNSTATE.WaitForSpawn;
@@ -116,10 +126,18 @@ public class CowController : MonoBehaviour
         }
     }
 
-    public void CowCollected()
+    public void CowCollected(bool increase_difficulty)
     {
         sound_player_.clip = cow_;
         sound_player_.Play();
+
+        if (increase_difficulty)
+        {
+            max_spawn_count_ = hard_max_spawn_count_;
+            spawn_interval_ = hard_spawn_interval_;
+            visible_duration_ = hard_visible_duration_;
+            horn_rate_ = hard_horn_rate_;
+        }
     }
 
     public void BullCollected()
